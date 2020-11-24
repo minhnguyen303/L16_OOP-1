@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Bài tập] Xây dựng lớp mô tả hình chữ nhật</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1368px" height="768px" style="border:1px solid #d3d3d3"></canvas>
+<script>
+    function Rectangle(wight, height) {
+        this.wight = wight;
+        this.height = height;
+        this.setWight = function (wight){
+            this.wight = wight;
+        }
+        this.setHeight = function (height){
+            this.height = height;
+        }
+        this.C = function (){
+            return (this.height + this.wight) * 2;
+        }
+        this.S = function (){
+            return this.height * this.wight;
+        }
+        this.showRectangle = function (x, y){
+            let ctx = document.getElementById("myCanvas").getContext("2d");
+            ctx.beginPath();
+            ctx.rect(x, y, this.wight, this.height);
+            ctx.fill();
+        }
+    }
+
+    let rectangle = new Rectangle(200, 300);
+    rectangle.showRectangle(50, 50);
+    rectangle.setWight(300);
+    rectangle.setHeight(600);
+    document.write("Chu vi hình chữ nhật là: " + rectangle.C() + "\n" + "Diện tích hình chữ nhật là: " + rectangle.S());
+</script>
+</body>
+</html>

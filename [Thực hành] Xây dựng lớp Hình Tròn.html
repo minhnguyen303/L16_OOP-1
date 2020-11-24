@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Thực hành] Xây dựng lớp Hình Tròn</title>
+</head>
+<body>
+<script>
+    let Circle = function(radius) {
+
+        this.radius = radius;
+
+        this.getRadius = function() {
+            return this.radius;
+        }
+
+        this.getArea = function() {
+            return Math.PI * this.radius * this.radius;
+        }
+    }
+
+    let circle = new Circle(2);
+
+    let radius = circle.getRadius(); // 2
+
+    let area = circle.getArea(); // 12.566370614359172
+
+    alert("radius: " + radius + "; area: " + area);
+
+
+    let circle2 = new Circle(3);
+
+    let radius2 = circle2.getRadius(); // 2
+
+    let area2 = circle2.getArea(); // 12.566370614359172
+
+    alert("radius: " + radius2 + "; area: " + area2);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[Thực hành] Funny circles</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1368px" height="768px" style="border:1px solid #d3d3d3"></canvas>
+<script>
+    function Circle(x, y, radius) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+    }
+
+    function createCircle() {
+        let ctx = document.getElementById("myCanvas").getContext("2d");
+        let circle = new Circle(500, 500, 80);
+        ctx.beginPath();
+        ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
+        ctx.fill();
+    }
+
+    // Random radius
+    function createCircleRandomRadius() {
+        let ctx = document.getElementById("myCanvas").getContext("2d");
+        let radius = Math.floor(Math.random() * 80);
+        let circle = new Circle(500, 500, radius);
+        ctx.beginPath();
+        ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
+        ctx.fill();
+    }
+
+    function getRandomHex() {
+        return Math.floor(Math.random() * 255);
+    }
+
+    function getRandomColor() {
+        let red = getRandomHex();
+        let green = getRandomHex();
+        let blue = getRandomHex();
+        return "rgb(" + red + "," + blue + "," + green + ")";
+    }
+
+    // Random color
+    function createCircleRandomColor() {
+        let ctx = document.getElementById("myCanvas").getContext("2d");
+        let radius = Math.floor(Math.random() * 80);
+        let color = getRandomColor();
+        let circle = new Circle(500, 500, radius);
+        ctx.beginPath();
+        ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = color;
+        ctx.fill();
+    }
+
+    // Random pos
+    function createCircleRandomPos(){
+        let ctx = document.getElementById("myCanvas").getContext("2d");
+        let radius = Math.floor(Math.random() * 80);
+        let color = getRandomColor();
+        let x = Math.random() * window.innerWidth;
+        let y = Math.random() * window.innerHeight;
+        let circle= new Circle(x, y, radius);
+        ctx.beginPath();
+        ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = color;
+        ctx.fill();
+    }
+
+    function createMultipleCircle(){
+        for (let j = 0; j < 30; j++){
+            for(let i = 0; i < 30; i++){
+                createCircleRandomPos();
+            }
+        }
+    }
+
+    setInterval("createMultipleCircle()", 300);
+//    createMultipleCircle();
+</script>
+</body>
+</html>
