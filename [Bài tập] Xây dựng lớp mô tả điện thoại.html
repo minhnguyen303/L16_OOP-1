@@ -10,23 +10,90 @@
         constructor() {
             this.status = false;
             this.energy = 0;
-            this.messagerCurrent = '';
-            this.messagerReceive = [];
-            this.messagerSended = [];
+            this.messageCurrent = '';
+            this.messageReceived = [];
+            this.messageSended = [];
         }
 
-        checkStatus(){
-            return ((this.status) ? 'On' : 'False')
+        checkStatus() {
+            return this.status;
         }
 
-        switchStatus(value){
+        switchStatus(value) {
             this.status = value;
         }
 
-        chargingBattery(){
-            
+        chargingBattery() {
+            this.energy = 100;
+            alert("Pin đã đầy, chúng tôi vừa thay pin mới :>");
+        }
+
+        createMessage(str) {
+            if (this.checkStatus() == true) {
+                this.subtractEnergy();
+                this.messageCurrent = str;
+            }
+        }
+
+        receiveMessage(str) {
+            if (this.checkStatus() == true) {
+                this.subtractEnergy();
+                this.messageReceived.push(str);
+            }
+        }
+
+        sendMessage(str, obj) {
+            if (this.checkStatus() == true) {
+                this.subtractEnergy();
+                this.messageSended.push(str);
+                return obj.receiveMessage(str);
+            }
+        }
+
+        showReceivedMessage() {
+            if (this.checkStatus() == true) {
+                this.subtractEnergy();
+                let messages = '';
+                for (let i in this.messageReceived) {
+                    messages += "Message " + i + " : " + this.messageReceived[i] + "\n";
+                }
+                alert(messages);
+            }
+        }
+
+        showSendedMessage() {
+            if (this.checkStatus()) {
+                this.subtractEnergy();
+                let messages = '';
+                for (let i in this.messageSended) {
+                    messages += "Message " + i + " : " + this.messageSended[i] + "\n";
+                }
+                alert(messages);
+            }
+        }
+
+        subtractEnergy() {
+            if (this.energy == 0) {
+                alert("Hết pin !!!")
+            } else {
+                this.energy--;
+            }
         }
     }
+
+    let nokia = new Mobile();
+    let iphone = new Mobile();
+
+    nokia.switchStatus(true);
+    iphone.switchStatus(true);
+
+    nokia.chargingBattery();
+    iphone.chargingBattery();
+
+    nokia.createMessage("Đây là một tin nhắn");
+    nokia.sendMessage(nokia.messageCurrent, iphone);
+    iphone.showReceivedMessage();
+
 </script>
 </body>
 </html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[*Bài tập] Phát triển game lái xe</title>
+    <script src="js/driverCar.js"></script>
+</head>
+<body>
+<div id="t"></div>
+<img src="images/car.png" alt="" style="display: none" id="myCar">
+<script>
+
+    let pen;
+    let game;
+    let keyDown = false;
+    let obstacles = [];
+
+    function createCanvas() {
+        let w = ((window.innerWidth / 6) * 5) + "px";
+        let h = ((window.innerHeight / 6) * 5) + "px";
+        let data = `<canvas id="myCanvas" height="${h}" width="${w}"></canvas>`
+        document.write(data);
+        let canvas = document.getElementById('myCanvas');
+        canvas.style.border = "2px solid black";
+        canvas.style.display = "block";
+        canvas.style.marginLeft = "auto";
+        canvas.style.marginRight = "auto";
+        window.addEventListener('keydown', keyPressed);
+        window.addEventListener('keyup', keyUp);
+        pen = canvas.getContext('2d');
+    }
+
+    function btnControl() {
+        let data = `<div style="display: block ;margin: 20px auto; text-align: center">`
+        data += `<button style="border: 2px solid red; font-size: 25px" onclick="startGame()">START</button>`;
+        data += `<button style="border: 2px solid red; font-size: 25px" onclick="stopGame()">STOP</button>`;
+        data += `</div>`
+        document.write(data);
+    }
+
+    createCanvas();
+    btnControl();
+
+    function startGame() {
+        game = setInterval(updateScreen, car.timeMove);
+    }
+
+    function createObstacle(){
+        for (let i = 0; i < 5; i++) {
+            obstacles[i] = new Obstacles();
+            obstacles[i].create(pen);
+        }
+    }
+
+    function updateScreen(){
+        let cv = document.getElementById('myCanvas');
+        pen.clearRect(0, 0, cv.width, cv.height);
+        carMove();
+        for (let i of obstacles){
+            i.show(pen);
+        }
+    }
+
+    function stopGame() {
+        clearInterval(game);
+    }
+
+    function keyPressed(event) {
+        //console.log("Debug key pressed: " + event.key);
+        switch (event.key) {
+            case 'ArrowUp':
+                car.changeDirection(event.key);
+                break;
+            case 'ArrowDown':
+                car.changeDirection(event.key);
+                break;
+            case 'ArrowLeft':
+                car.changeDirection(event.key);
+                break;
+            case 'ArrowRight':
+                car.changeDirection(event.key);
+                break;
+            case 'Control':
+                if (!keyDown) {
+                    car.speedUp();
+                    keyDown = !keyDown;
+                    break;
+                }
+        }
+    }
+
+    function keyUp(event) {
+        if (event.key === 'Control' && keyDown) {
+            console.log("key up");
+            keyDown = !keyDown;
+            car.resetSpeed();
+        }
+    }
+
+    //////////////
+
+    function checkImpact(obj1, obj2) {
+        if (((obj1.x + obj1.width) > obj2.x && (obj1.y + obj1.height) > obj2.y) || ((obj2.x + obj2.width) > obj1.x && (obj2.y + obj2.height) > obj1.y)) {
+            return;
+        }
+        gameOver();
+    }
+
+    function gameOver() {
+        stopGame();
+        alert("GAME OVER");
+    }
+
+    function carMove() {
+        car.move();
+        car.show(pen);
+    }
+
+    let car = new Car();
+    car.create(pen);
+    createObstacle();
+
+</script>
+</body>
+</html>
