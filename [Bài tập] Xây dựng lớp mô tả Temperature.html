@@ -6,21 +6,21 @@
 </head>
 <body>
 <script>
-    class Temperature{
-        constructor() {
+    class Temperature {
+        constructor(cel) {
+            this.celsius = cel;
         }
 
-        tempC(_temp){
-            this.min = -273;
-            this.temp = _temp;
+        convertCtoF(){
+            return this.checkLimitCelsius()?(this.celsius*1.8+32):"Nhiet do khong dung";
         }
 
-        conversionCtoF(){
-
+        convertCtoK(){
+            return this.checkLimitCelsius()?(this.celsius + 273.15):"Nhiet do khong dung";
         }
 
-        conversionCtoK(){
-
+        checkLimitCelsius(){
+            return (this.celsius > -273);
         }
     }
 </script>

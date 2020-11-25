@@ -5,6 +5,8 @@ class Car {
         this.x = 100;
         this.y = 100;
         this.direction = 'ArrowUp';
+        this.height = 85;
+        this.width = 60;
     }
 
     speedUp() {
@@ -63,11 +65,13 @@ class Obstacles {
     constructor() {
         this.x = 0;
         this.y = 0;
+        this.height = 50;
+        this.width = 50;
     }
 
     create(ctx) {
-        this.x = Math.floor(Math.random() * (document.getElementById('myCanvas').height - 50));
-        this.y = Math.floor(Math.random() * (document.getElementById('myCanvas').width - 50));
+        this.x = Math.floor(Math.random() * ((document.getElementById('myCanvas').width - 50) - 50)) + 50;
+        this.y = Math.floor(Math.random() * ((document.getElementById('myCanvas').height - 50) - 50)) + 50;
         ctx.beginPath();
         ctx.rect(this.x, this.y, 50, 50);
         ctx.fillStyle = 'black';
