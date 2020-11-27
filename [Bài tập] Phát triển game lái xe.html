@@ -8,15 +8,17 @@
 <body>
 <div id="t"></div>
 <img src="images/car.png" alt="" style="display: none" id="myCar">
+<img src="images/coin.png" alt="" style="display: none" id="coin">
 <script>
+    let score = 0;
     let pen;
     let game;
     let keyDown = false;
     let obstacles = [];
 
     function createCanvas() {
-        let w = ((window.innerWidth / 6) * 5) + "px";
-        let h = ((window.innerHeight / 6) * 5) + "px";
+        let w = "700px";//((window.innerWidth / 6) * 5) + "px";
+        let h = "500px";//((window.innerHeight / 6) * 5) + "px";
         let data = `<canvas id="myCanvas" height="${h}" width="${w}"></canvas>`
         document.write(data);
         let canvas = document.getElementById('myCanvas');
@@ -31,6 +33,7 @@
 
     function btnControl() {
         let data = `<div style="display: block ;margin: 20px auto; text-align: center">`
+        data += `<p id="score" style="border: 2px solid red; font-size: 25px">0</p>`
         data += `<button style="border: 2px solid red; font-size: 25px" onclick="startGame()">START</button>`;
         data += `<button style="border: 2px solid red; font-size: 25px" onclick="stopGame()">STOP</button>`;
         data += `</div>`
@@ -57,11 +60,16 @@
         carMove();
         for (let obj of obstacles) {
             obj.show(pen);
-            if (checkImpact(obj, car) == true) {
+            if (checkImpact(obj, car)) {
                 console.log("Car: " + car.x + " - " + car.y + "\n" + "Obs: " + obstacles.indexOf(obj) + " - " + obj.x + " - " + obj.y);
-                //gameOver();
+                gameOver();
             }
         }
+        coin.show(pen);
+        if (checkImpact(coin, car)){
+            score++;
+        }
+        updateScore();
     }
 
     function stopGame() {
@@ -100,9 +108,27 @@
         }
     }
 
-    //////////////
+    /////////////////////////////////////////////////////////////////////////////////
 
-    function checkImpact(obj1, obj2) {
+    function checkImpact(obj1, obj2) {;
+        let left1 = obj1.x;
+        let right1 = obj1.x + obj1.width;
+        let top1 = obj1.y;
+        let bottom1 = obj1.y + obj1.height;
+
+        let left2 = obj2.x;
+        let right2 = obj2.x + obj2.width;
+        let top2 = obj2.y;
+        let bottom2 = obj2.y + obj2.height;
+        if (right1 < left2 || bottom1 < top2 || left1 > right2 || top1 > bottom2) {
+            return false;
+        } else {
+            return true;
+        }
+
+
+
+
         if ((obj1.x + obj1.width) < obj2.x && (obj1.y + obj1.height) < obj2.y) {
             return true;
         }
@@ -119,8 +145,14 @@
         car.show(pen);
     }
 
+    function updateScore(){
+        document.getElementById('score').innerText = "" + score;
+    }
+
     let car = new Car();
     car.create(pen);
+    let coin = new Coin();
+    coin.create(pen);
     createObstacle();
 
 </script>

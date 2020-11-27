@@ -20,6 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef89449c-d121-402c-b2aa-c23de18e1a59" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/images/coin.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/[Bài tập] Phát triển game lái xe.html" beforeDir="false" afterPath="$PROJECT_DIR$/[Bài tập] Phát triển game lái xe.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/driverCar.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/driverCar.js" afterDir="false" />
@@ -32,8 +33,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -52,10 +53,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/images" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\minh0\WebstormProjects\L16_OOP-1\images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\minh0\WebstormProjects\L16_OOP-1\images" />
     </key>
@@ -73,7 +78,15 @@
       <workItem from="1606224119680" duration="9068000" />
       <workItem from="1606264535777" duration="28477000" />
       <workItem from="1606302787949" duration="1779000" />
-      <workItem from="1606316129178" duration="4736000" />
+      <workItem from="1606316129178" duration="7443000" />
+      <workItem from="1606351073296" duration="2607000" />
+      <workItem from="1606355683000" duration="728000" />
+      <workItem from="1606357029014" duration="3472000" />
+      <workItem from="1606371195485" duration="4851000" />
+      <workItem from="1606408935388" duration="650000" />
+      <workItem from="1606438083627" duration="91000" />
+      <workItem from="1606450412908" duration="625000" />
+      <workItem from="1606455722445" duration="1987000" />
     </task>
     <servers />
   </component>
